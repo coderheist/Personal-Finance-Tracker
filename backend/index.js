@@ -17,6 +17,16 @@ app.use(express.json());
 
 // Routes
 app.use('/api/transactions', transactionRoutes);
+import notificationRoutes from './routes/notificationRoutes.js';
+app.use('/api/notifications', notificationRoutes);
+import categoryRoutes from './routes/categoryRoutes.js';
+app.use('/api/categories', categoryRoutes);
+import userRoutes from './routes/userRoutes.js';
+app.use('/api/user', userRoutes);
+import groupRoutes from './routes/groupRoutes.js';
+app.use('/api/groups', groupRoutes);
+import authRoutes from './routes/authRoutes.js';
+app.use('/api/auth', authRoutes);
 
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {

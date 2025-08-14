@@ -4,7 +4,9 @@ const API = `${process.env.REACT_APP_API_BASE_URL}/transactions`;
 
 export const getTransactions = async () => {
   try {
-    const res = await axios.get(API);
+    const res = await axios.get(API, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    });
     return res.data;
   } catch (error) {
     console.error('Error fetching transactions:', error);
@@ -14,7 +16,9 @@ export const getTransactions = async () => {
 
 export const addTransaction = async (data) => {
   try {
-    const res = await axios.post(API, data);
+    const res = await axios.post(API, data, {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+    });
     return res.data;
   } catch (error) {
     console.error('Error adding transaction:', error);

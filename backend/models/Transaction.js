@@ -3,9 +3,9 @@ import mongoose from 'mongoose';
 const transactionSchema = new mongoose.Schema({
   type: {
     type: String,
-    enum: ['income', 'expense'], // Ensure lowercase
+    enum: ['income', 'expense'],
     required: [true, 'Transaction type is required (income or expense)'],
-    lowercase: true, // ✅ Auto-convert to lowercase before saving
+    lowercase: true,
     trim: true
   },
   amount: {
@@ -26,6 +26,16 @@ const transactionSchema = new mongoose.Schema({
   date: {
     type: Date,
     required: [true, 'Date is required']
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
+  group: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Group',
+    required: false
   }
 });
 

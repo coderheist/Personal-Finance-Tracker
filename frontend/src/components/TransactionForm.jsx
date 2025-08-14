@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { transactionSchema } from '../utils/validationSchema';
 
-const TransactionForm = ({ onSubmit }) => {
+const TransactionForm = ({ onSubmit, categories = [] }) => {
   const {
     register,
     handleSubmit,
@@ -53,10 +53,9 @@ const TransactionForm = ({ onSubmit }) => {
       {/* Category */}
       <select {...register('category')}>
         <option value="">Select Category</option>
-        <option value="Food">Food</option>
-        <option value="Travel">Travel</option>
-        <option value="Shopping">Shopping</option>
-        <option value="Salary">Salary</option>
+        {categories.map(cat => (
+          <option key={cat} value={cat}>{cat}</option>
+        ))}
       </select>
       {errors.category && <p>{errors.category.message}</p>}
 
