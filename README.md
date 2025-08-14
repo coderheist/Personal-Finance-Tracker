@@ -91,12 +91,3 @@ Frontend Developer & MERN Stack Enthusiast 🌟
 
 📃 License
 This project is licensed under the MIT License.
-
-
----
-
-### ✅ Notes:
-- Replace `screenshots/*.png` with actual screenshot file names if you add them.
-- Don’t forget to add `.env` files for both frontend and backend as explained.
-- Let me know if you want to deploy this to **Render**, **Vercel**, or **Netlify** and need a deployment section added.
-
