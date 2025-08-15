@@ -17,6 +17,8 @@ app.use(express.json());
 
 // Routes
 app.use('/api/transactions', transactionRoutes);
+import scheduledTransactionRoutes from './routes/scheduledTransactionRoutes.js';
+app.use('/api/scheduled-transactions', scheduledTransactionRoutes);
 import notificationRoutes from './routes/notificationRoutes.js';
 app.use('/api/notifications', notificationRoutes);
 import categoryRoutes from './routes/categoryRoutes.js';
