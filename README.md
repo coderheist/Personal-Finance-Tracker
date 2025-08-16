@@ -185,7 +185,7 @@ npm start
 
 ## 🧑‍💻 Author
 
-**Your Name**  
+Archit Jain 
 Full-Stack Developer & MERN Stack Enthusiast 🌟
 
 ---
