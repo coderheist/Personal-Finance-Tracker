@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+// import axios from 'axios'; // Not used in this version
 import TransactionForm from "../components/TransactionForm";
 import TransactionList from "../components/TransactionList";
 import Charts from "../components/Charts";
-import Trends from "../components/Trends";
+// import Trends from "../components/Trends"; // Temporarily commented out
 import { getTransactions, addTransaction } from "../services/api";
 
 const Dashboard = ({ user, categories }) => {
   const [transactions, setTransactions] = useState([]);
-  const [budgetLimits, setBudgetLimits] = useState({});
+  // const [budgetLimits, setBudgetLimits] = useState({}); // Will implement later
   const [upcomingScheduled, setUpcomingScheduled] = useState([]);
 
   useEffect(() => {
     fetchTransactions();
-    fetchBudgetLimits();
+    // fetchBudgetLimits(); // Will implement later
     fetchUpcomingScheduled();
   }, []);
 
@@ -32,23 +32,23 @@ const Dashboard = ({ user, categories }) => {
     }
   };
 
-  const fetchBudgetLimits = async () => {
-    try {
-      const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/user/profile`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
-      });
-      setBudgetLimits(res.data.budgetLimits || {});
-    } catch (err) {
-      if (err.response) {
-        console.error('Budget fetch error:', err.response.data?.message || `${err.response.status} ${err.response.statusText}`);
-      } else if (err.request) {
-        console.error('Budget fetch error: No response from server.');
-      } else {
-        console.error(`Budget fetch error: ${err.message}`);
-      }
-      setBudgetLimits({});
-    }
-  };
+  // const fetchBudgetLimits = async () => {
+  //   try {
+  //     const res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/user/profile`, {
+  //       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+  //     });
+  //     setBudgetLimits(res.data.budgetLimits || {});
+  //   } catch (err) {
+  //     if (err.response) {
+  //       console.error('Budget fetch error:', err.response.data?.message || `${err.response.status} ${err.response.statusText}`);
+  //     } else if (err.request) {
+  //       console.error('Budget fetch error: No response from server.');
+  //     } else {
+  //       console.error(`Budget fetch error: ${err.message}`);
+  //     }
+  //     setBudgetLimits({});
+  //   }
+  // };
 
   const fetchTransactions = async () => {
     try {
@@ -62,12 +62,12 @@ const Dashboard = ({ user, categories }) => {
   const now = new Date();
   const month = now.getMonth();
   const year = now.getFullYear();
-  const dashboardCategories = categories || [];
-  const categoryExpenses = dashboardCategories.reduce((acc, cat) => {
-    acc[cat] = transactions.filter(t => t.type === 'expense' && t.category === cat && new Date(t.date).getMonth() === month && new Date(t.date).getFullYear() === year)
-      .reduce((sum, t) => sum + t.amount, 0);
-    return acc;
-  }, {});
+  // const dashboardCategories = categories || [];
+  // const categoryExpenses = dashboardCategories.reduce((acc, cat) => {
+  //   acc[cat] = transactions.filter(t => t.type === 'expense' && t.category === cat && new Date(t.date).getMonth() === month && new Date(t.date).getFullYear() === year)
+  //     .reduce((sum, t) => sum + t.amount, 0);
+  //   return acc;
+  // }, {}); // Will implement later
 
   const totalIncome = transactions
     .filter((t) => t?.type?.toLowerCase() === 'income')
@@ -90,12 +90,12 @@ const Dashboard = ({ user, categories }) => {
   const weekEnd = new Date(weekStart);
   weekEnd.setDate(weekStart.getDate() + 6);
 
-  const weeklyIncome = transactions
-    .filter(t => t?.type?.toLowerCase() === 'income' && new Date(t.date) >= weekStart && new Date(t.date) <= weekEnd)
-    .reduce((acc, curr) => acc + (curr?.amount || 0), 0);
-  const weeklyExpenses = transactions
-    .filter(t => t?.type?.toLowerCase() === 'expense' && new Date(t.date) >= weekStart && new Date(t.date) <= weekEnd)
-    .reduce((acc, curr) => acc + (curr?.amount || 0), 0);
+  // const weeklyIncome = transactions
+  //   .filter(t => t?.type?.toLowerCase() === 'income' && new Date(t.date) >= weekStart && new Date(t.date) <= weekEnd)
+  //   .reduce((acc, curr) => acc + (curr?.amount || 0), 0);
+  // const weeklyExpenses = transactions
+  //   .filter(t => t?.type?.toLowerCase() === 'expense' && new Date(t.date) >= weekStart && new Date(t.date) <= weekEnd)
+  //   .reduce((acc, curr) => acc + (curr?.amount || 0), 0); // Will implement later
 
   // Recent activity feed (last 5 transactions)
   const recentTransactions = [...transactions]

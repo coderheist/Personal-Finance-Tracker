@@ -1,11 +1,29 @@
 {
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "jsonwebtoken": "^9.0.2"
+  "name": "personal-finance-tracker",
+  "version": "1.0.0",
+  "description": "A comprehensive personal finance tracker with expense management, budgeting, and analytics",
+  "main": "index.js",
+  "scripts": {
+    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "dev": "concurrently \"cd backend && npm run dev\" \"cd frontend && npm start\"",
+    "build": "cd frontend && npm run build",
+    "start": "cd backend && npm start",
+    "vercel-build": "cd frontend && npm install && npm run build",
+    "deploy": "vercel --prod",
+    "preview": "vercel"
   },
+  "keywords": ["finance", "expense-tracker", "budgeting", "personal-finance"],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
   "devDependencies": {
     "autoprefixer": "^10.4.21",
+    "concurrently": "^8.2.2",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.12"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   }
 }
